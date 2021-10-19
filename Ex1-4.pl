@@ -1,0 +1,10 @@
+killer(butch).
+married(mia,marcellus).
+dead(zed).
+kill(marcellus,X):-
+    footmassage(X,mia).
+loves(mia,X):-
+    goodDancer(X).
+eats(jules,X):-
+    tasty(X);
+    nutririous(X).
