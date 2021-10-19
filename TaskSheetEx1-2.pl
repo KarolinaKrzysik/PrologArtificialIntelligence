@@ -53,15 +53,15 @@ grandmother_of(Grandmother,Grandchild):-
 
 
 sister_of(Sister,Sibling):-
-    parent_of(Parent,Sister),
-    parent_of(Parent,Sibling),
+    mother_of(Parent,Sister),
+    mother_of(Parent,Sibling),
     not(Sister=Sibling),
     female(Sister).
 
 
 brother_of(Brother,Sibling):-
-    parent_of(Parent,Brother),
-    parent_of(Parent,Sibling),
+    mother_of(Parent,Brother),
+    mother_of(Parent,Sibling),
     male(Brother),
     not(Brother=Sibling).
 
@@ -80,6 +80,5 @@ uncle_of(Uncle,Person):-
     sister_of(Aunt,Parent)))),
 
     parent_of(Parent,Person).
-    
     
 
