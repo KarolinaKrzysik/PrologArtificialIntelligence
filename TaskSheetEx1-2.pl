@@ -10,7 +10,6 @@ male(james).
 male(dudley).
 male(harry).
 
-/parent_of(Parent,Child)./
 parent_of(paul,petunia).
 parent_of(paul,lili).
 parent_of(helen,petunia).
@@ -22,44 +21,65 @@ parent_of(petunia,dudley).
 parent_of(lili,harry).
 parent_of(james,harry).
 
-/Father of a child/
+married_to(vernon,petunia).
+married_to(james,lili).
+married_to(paul,helen).
+married_to(albert,ruth).
+married_to(petunia,vernon).
+married_to(lili,james).
+married_to(helen,paul).
+married_to(ruth,albert).
+
+
 father_of(Father,Child):-
     parent_of(Father,Child),
     male(Father).
 
-/Mother of a child/
 mother_of(Mother,Child):-
     parent_of(Mother,Child),
     female(Mother).
 
-/Grandfather of a grandchild/
+
 grandfather_of(Grandfather,Grandchild):-
     parent_of(Grandfather,Parent),
     parent_of(Parent,Grandchild),
     male(Grandfather).
 
-/Grandmother of a grandchild/
+
 grandmother_of(Grandmother,Grandchild):-
     parent_of(Grandmother,Parent),
     parent_of(Parent,Grandchild),
     female(Grandmother).
 
-/Sister of a sibling/
+
 sister_of(Sister,Sibling):-
     parent_of(Parent,Sister),
     parent_of(Parent,Sibling),
+    not(Sister=Sibling),
     female(Sister).
 
-/Brother of a sibling ADDITIONAL/
+
 brother_of(Brother,Sibling):-
     parent_of(Parent,Brother),
     parent_of(Parent,Sibling),
-    male(Brother).
+    male(Brother),
+    not(Brother=Sibling).
 
-/Aunt of a niece or a nephew/
-aunt_of(Aunt, Person):-
-    sister_of(parent_of(Parent,Person)).
 
-/Uncle of a niece or a nephew/
-uncle_of(Aunt, Person):-
-    brother_of(parent_of(Parent,Person)).
+aunt_of(Aunt,Person):-
+    ((sister_of(Aunt,Parent);
+    (married_to(Aunt,Uncle),
+    brother_of(Uncle,Parent)))),
+    parent_of(Parent,Person).
+    
+
+uncle_of(Uncle,Person):-
+    ((brother_of(Uncle,Parent);
+    
+    (married_to(Uncle,Aunt),
+    sister_of(Aunt,Parent)))),
+
+    parent_of(Parent,Person).
+    
+    
+
