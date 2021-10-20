@@ -1,0 +1,13 @@
+word(abalone,a,b,a,l,o,n,e).
+word(abandon,a,b,a,n,d,o,n).
+word(enhance,e,n,h,a,n,c,e).
+word(anagram,a,n,a,g,r,a,'m').
+word(connect,c,o,n,n,e,c,t).
+word(elegant,e,l,e,g,a,n,t).
+crosswd(V1,V2,V3,H1,H2,H3):-
+    word(V1,A,L1,B,L2,C,L3,D),
+    word(V2,E,L4,F,L5,H,L6,I),
+    word(V3,J,L7,K,L8,L,L9,M),
+    word(H1,_A,L1,_B,L4,_C,L7,_D),
+    word(H2,_E,L2,_F,L5,_H,L8,_I),
+    word(H3,_J,L3,_K,L6,_L,L9,_M).
